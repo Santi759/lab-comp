@@ -1,0 +1,243 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class Main {
+    public static int contarNumPar(int[] array) {
+        int contador = 0;
+        for (int elemento : array) {
+            if (elemento % 2 == 0) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    public static double MayoresAdiez(double[] array) {
+        int contadorDeMay = 0;
+        for (double elemento : array) {
+            if (elemento > 10.00) {
+                contadorDeMay++;
+            }
+        }
+        return contadorDeMay;
+    }
+
+    public static int sumaMultiplosDeTres(int[] arr) {
+        int suma = 0;
+        for (int elemento : arr) {
+            if (elemento % 3 == 0) {
+                suma += elemento;
+            }
+        }
+        return suma;
+    }
+
+    public static double maximoElemento(double[] array) {
+        double mayor = 0;
+        for (double elemento : array) {
+            if (elemento > mayor) {
+                mayor = elemento;
+            }
+        }
+        return mayor;
+    }
+
+    public static double minElemento(double[] array) {
+        double minimo = array[0];
+        for (double elemento : array) {
+            if (elemento < minimo) {
+                minimo = elemento;
+            }
+        }
+        return minimo;
+    }
+
+    public static void copiarArray(int[] arrayOrigen, int[] arrayDestino) {
+        if (arrayOrigen.length != arrayDestino.length) {
+            throw new IllegalArgumentException("Los arreglos deben tener la misma longitud");
+        }
+        for (int i = 0; i < arrayOrigen.length; i++) {
+            arrayDestino[i] = arrayOrigen[i];
+        }
+    }
+
+
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        //Ejercicio_1.1
+        int [] num = new int[10];
+        for (int i=0; i<num.length; i++ ){
+            num[i]=i+1;
+        }
+for (int i=0; i<num.length;i++) {
+    System.out.println(+num[i]);
+}
+
+    //Ejercicio_1.2
+    float[] num_prim = new float[10];
+    int contador=0;
+    int numActual=2;
+    while (contador<num_prim.length){
+        boolean esPrimo=true;
+        for (int i=2; i*i<= numActual; i++) {
+            if (numActual % i == 0) {
+                esPrimo = false;
+                break;
+            }
+        }
+        if (esPrimo) {
+            num_prim[contador] = numActual;
+            contador++;
+        }
+        numActual++;
+        }
+      for (int i=0;i<10;i++){
+          System.out.println(num_prim[i]+" ");
+}
+      System.out.println();
+
+      //Ejercicio_1.3
+
+        int [][] bidi = new int[10][10];
+        for (int i=0; i<bidi.length;i++){
+            for (int j=0; j<bidi.length; j++) {
+                bidi[i][j] = i * 10 + j;
+            }
+        }
+        for (int i=0; i<bidi.length;i++) {
+            for (int j=0; j<bidi.length; j++) {
+                System.out.println(bidi[i][j]+" ");
+            }
+        }
+        //Ejercicio_1.4
+        float [][][] tri = new float[3][3][3];
+        for (int i=0; i<tri.length;i++){
+            for (int j=0; j<tri.length; j++){
+                for (int k=0; k<tri.length; k++){
+                    tri[i][j][k]= (i*1)+(j*1)+(k*1);
+
+                }
+            }
+        }
+        for (int i=0; i<tri.length;i++){
+            for (int j=0; j<tri.length; j++){
+                for (int k=0; k<tri.length; k++) {
+                    System.out.println(tri[i][j][k]+" ");
+                  }
+                 }
+                }
+        //Ejercicio_2.1
+        int [] ent = new int[3];
+        for (int i=0;i< ent.length;i++){
+            System.out.println("Ingrese el valor del areglo la posicion: "+i);
+            ent[i]=sc.nextInt();
+        }
+        for (int i=0;i< ent.length;i++){
+            System.out.println(+ent[i]);
+        }
+
+        //Ejercicio_2.2
+
+        float [] flo = new float[3];
+        for (int i=0;i< flo.length;i++){
+            System.out.println("Ingrese el valor del areglo la posicion: "+i);
+            flo[i]=sc.nextFloat();
+        }
+        for (int i=0;i< flo.length;i++){
+            System.out.println(+flo[i]);
+        }
+
+        //Ejercicio_2.3
+        char[] car = "java".toCharArray();
+        for (int i=0; i<car.length;i++){
+            System.out.print(+car[i]);
+        }
+System.out.println();
+
+        //Ejercicio_2.4
+        boolean [] ft = new boolean[4];
+
+        for (int i=0;i< ft.length;i++){
+            if ((i+1) %2==0){
+                ft[i]=true;
+            }else{
+                ft[i]=false;
+            }
+        }
+        for (int i=0;i< ft.length;i++){
+            System.out.println(ft[i]);
+        }
+
+        //Ejercicio_3.1
+
+        int []sum = new int[10];
+        int sumaTotal=0;
+        for (int i=0; i<sum.length; i++ ){
+            sum[i]=i+1;
+            sumaTotal=sumaTotal+sum[i];
+        }
+            System.out.println("La suma de todo el arreglo es = "+sumaTotal);
+
+        //Ejercicio_3.2
+        float [] mul = new float[10];
+        float multiplicacionTotal=1;
+        for (int i=0;i< mul.length;i++){
+            mul[i]= (float) (i+1.5);
+            multiplicacionTotal=multiplicacionTotal*mul[i];
+        }
+        System.out.println("La multiplicacion de todo el arreglo es = "+multiplicacionTotal);
+
+        //Ejercicio_3.3
+
+        int [] ord = {9,5,4,7,6,3,1,8,10,2};
+
+        Arrays.sort(ord);
+        System.out.println("Ordenado de mayor a menor"+Arrays.toString(ord));
+
+        //Ejercicio_3.4
+
+        String [] ordenCad = {"hola","a veces","basilisco","clavo","mundo","zlatan","messi","duko","fulbo", "viaje"};
+        Arrays.sort(ordenCad);
+        System.out.println("Ordenado de mayor a menor"+Arrays.toString(ordenCad));
+
+        //Ejercicio_4.1
+
+        int [] pares = {10,33,36,44,55,67,75,88,96};
+        int NumPar = contarNumPar(pares);
+        System.out.println("La cantidad de números pares es: "+NumPar);
+
+        //Ejercicio_4.2
+
+        double [] may10 = {11.5, 2.5,-5,4.8,25.9,10.9,12.05,9.9};
+        double Mayores = MayoresAdiez(may10);
+        System.out.println("La cantidad de números mayores a 10 es: "+Mayores);
+
+        //Ejercicio_4.3
+        int[] miArray = {1, 3, 6, 9, 12, 15, 18};
+        int resultado = sumaMultiplosDeTres(miArray);
+        System.out.println("La suma de los múltiplos de 3 en el array es: " + resultado);
+
+        //Ejercicio_4.4
+        double [] maximo = {10,-6.5,25.6,29,-50.5,12};
+        double max = maximoElemento(maximo);
+        System.out.println("El maximo elemento del arreglo es: "+max);
+
+        //Ejercicio_4.5
+
+        double [] minimo = {10,-6.5,25.6,29,-50.5,12};
+        double min = minElemento(minimo);
+        System.out.println("El maximo elemento del arreglo es: "+min);
+
+        //Ejercicio_4.6
+
+        int [] origen ={1,2,3,4,5};
+        int [] destino = new int[origen.length];
+        copiarArray(origen,destino);
+        System.out.println("Array de destino");
+        for (int x : destino) {
+            System.out.print(x + " ");
+        }
+            }
+        }
+
+
