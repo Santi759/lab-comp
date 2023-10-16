@@ -1,0 +1,459 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+class Persona implements Comparable<Persona> {
+    private String nombre;
+    private int edad;
+
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    public int getEdad(){
+        return edad;
+    }
+
+    @Override
+    public int compareTo(Persona otraPersona) {
+        return this.nombre.compareTo(otraPersona.getNombre());
+    }
+
+   @Override
+    public String toString() {
+        return "Persona{" +
+                  "nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                '}';
+}
+        }
+
+
+public class Main {
+    public static void Seleccion(int a[]) {
+        int minimo, auxiliar, pos;
+        //5,-3,2258,10,4,3,25
+        for (int i = 0; i < (a.length - 1); i++) {
+            minimo = a[i];
+            pos = i;
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[j] < minimo) {
+                    minimo = a[j];
+                    pos = j;
+                }
+            }
+            if (pos != i) {
+                auxiliar = a[i];
+                a[i] = a[pos];
+                a[pos] = auxiliar;
+            }
+        }
+    }
+
+    public static void Inserccion(int a[]) {
+        int auxiliar, pos;
+        //5,-3,2258,10,4,3,25
+        for (int i = 0; i < a.length; i++) {
+            pos = i;
+            auxiliar = a[i];
+            while ((pos > 0) && (a[pos - 1] > auxiliar)) {
+                a[pos] = a[pos - 1];
+                pos--;
+            }
+            a[pos] = auxiliar;
+
+        }
+    }
+
+    public static void shellSort(int[] arre) {
+        int n = arre.length;
+        for (int gap = n / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < n; i++) {
+                int temp = arre[i];
+                int j;
+                for (j = i; j >= gap && arre[j - gap] > temp; j -= gap) {
+                    arre[j] = arre[j - gap];
+                }
+                arre[j] = temp;
+            }
+        }
+    }
+
+    public static void printArray_1(int[] OrdShell) {
+        for (int num : OrdShell) {
+            System.out.print(num + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        //Ejercicio_1
+
+        Integer[] enterosOrd = {20, 5, 85, 6, 30, 7, 45, 10, 9, 2};
+        Arrays.sort(enterosOrd);
+        System.out.println("Números ordenados de menor a mayor:");
+        for (int i : enterosOrd) {
+            System.out.print(+i + "--");
+        }
+        System.out.println(" ");
+
+//Ejercicio_2
+        Collections.reverse(Arrays.asList(enterosOrd));
+        System.out.println("Números ordenados de mayor a menor:");
+        for (Integer element : enterosOrd) {
+            System.out.print(+element + "--");
+        }
+        System.out.println(" ");
+
+        //Ejercicio_3
+
+        double[] floOrd = {2.5, 8.52, 6.9, 45.8, 56.7, 7.9, 0.25, 11.5, 3.7, 10.00};
+        Double[] arregloDouble = new Double[floOrd.length];
+        for (int i = 0; i < floOrd.length; i++) {
+            arregloDouble[i] = floOrd[i];
+        }
+        Arrays.sort(arregloDouble);
+        System.out.println("Números ordenados de menor a mayor:");
+        for (double i : arregloDouble) {
+            System.out.print(+i + "--");
+        }
+        System.out.println(" ");
+
+        //Ejercicio_4
+        Collections.reverse(Arrays.asList(arregloDouble));
+        System.out.println("Números ordenados de mayor a menor:");
+        for (Double element : arregloDouble) {
+            System.out.print(+element + "--");
+        }
+        System.out.println(" ");
+
+        //Ejercicio_5
+        String[] cadenas = {"hola", "argentina", "soledad", "duko", "messi", "river", "fecha", "sol", "zorro", "variable"};
+        Arrays.sort((cadenas));
+        System.out.println("Cadenas ordenadas alfabeticamente:");
+        for (String cadena : cadenas) {
+            System.out.println(cadena);
+        }
+        System.out.println(" ");
+        //Ejercicio_6
+        Collections.reverse(Arrays.asList(cadenas));
+        System.out.println("Cadenas ordenadas alfabeticamente en forma descendente:");
+        for (String cadena : cadenas) {
+            System.out.println(cadena);
+        }
+        System.out.println(" ");
+        //Ejercicio_7_8
+
+        Persona[] personas = {
+                new Persona("Santiago", 20),
+                new Persona("Robbert", 45),
+                new Persona("Annie", 19),
+                new Persona("Zaul", 69),
+                new Persona("Bautista", 17),
+                new Persona("Paula", 35)
+        };
+
+        Arrays.sort(personas);
+
+        for (Persona persona : personas) {
+            System.out.println(persona.getNombre());
+        }
+        Arrays.sort(personas, (p1, p2) -> p1.getEdad() - p2.getEdad());
+        for (Persona persona : personas) {
+            System.out.println(persona);
+        }
+        //Ejercicio_9
+        int[] OrdBur = {5, 3, 4, 2, 1};
+        int aux;
+
+        for (int i = 0; i < (OrdBur.length - 1); i++) {
+            for (int j = 0; j < (OrdBur.length - 1); j++) {
+                if (OrdBur[j] > OrdBur[j + 1]) {
+                    aux = OrdBur[j];
+                    OrdBur[j] = OrdBur[j + 1];
+                    OrdBur[j + 1] = aux;
+                }
+            }
+        }
+        System.out.println("Arreglo ordenada en forma creciente:");
+
+        for (int j : OrdBur) {
+            System.out.print(j + "--");
+        }
+        System.out.println(" ");
+        //Ejercicio_10
+        int[] OrdSel = {5, -3, 2258, 10, 4, 3, 25};
+        Seleccion(OrdSel);
+        System.out.println(" Ordenamiento por Seleccion:");
+
+        for (int i : OrdSel) {
+            System.out.print(i + " - ");
+        }
+        System.out.println(" ");
+        //Ejercicio_11
+
+        int[] OrdIns = {6, -2, 1280, 100, 42, -3, 25};
+        Inserccion(OrdIns);
+        System.out.println(" Ordenamiento por Inseccion:");
+        for (int i : OrdIns) {
+            System.out.print(i + " - ");
+        }
+        System.out.println(" ");
+
+        //Ejercicio_12
+        int[] array = {12, 11, 13, 5, 6, 7};
+        System.out.println("Array original:");
+        printArray(array);
+
+        mergeSort(array, 0, array.length - 1);
+
+        System.out.println("Array ordenado:");
+        printArray(array);
+
+        System.out.println(" ");
+
+        //Ejercicio_13
+        int[] OrdShell = {12, 34, 54, 2, 3};
+
+        System.out.println("Arreglo sin ordenar:");
+        printArray_1(OrdShell);
+
+        shellSort(OrdShell);
+
+        System.out.println("\nArreglo ordenado:");
+        printArray_1(OrdShell);
+        System.out.println(" ");
+
+        //Ejercicio_14
+        int [] elem = new int[4];
+        int opc,opc_1;
+        System.out.println("Introduzca los valores del arreglo:");
+        for (int i=0;i< elem.length;i++) {
+            elem[i] = sc.nextInt();
+        }
+        System.out.println("Decide como ordenar el arreglo:");
+        System.out.println("Opcion 1---> <<<Inserccion>>>:");
+        System.out.println("Opcion 2---> <<<Burbuja>>>:");
+        System.out.println("Opcion 3---> <<<Seleccion>>>:");
+        opc = sc.nextInt();
+        System.out.println("Decide como ordenar el arreglo:");
+        System.out.println("Opcion 1---> <<<Forma Ascendente>>>:");
+        System.out.println("Opcion 2---> <<<Forma Descendente>>>:");
+        opc_1 = sc.nextInt();
+        if ((opc==1) && (opc_1==1)){
+            System.out.println("Ordenamiento Insercción en Forma Ascendente");
+            System.out.println("Arreglo Desordenado");
+            for (int i=0;i<elem.length;i++) {
+                System.out.print(elem[i]+ " - ");
+            }
+            int auxiliar, pos;
+            for (int i = 0; i < elem.length; i++) {
+                pos = i;
+                auxiliar = elem[i];
+                while ((pos > 0) && (elem[pos - 1] > auxiliar)) {
+                    elem[pos] = elem[pos - 1];
+                    pos--;
+                }
+                elem[pos] = auxiliar;
+
+            }
+            System.out.println("Arreglo Ordenado");
+            for (int i=0;i<elem.length;i++) {
+                System.out.print(elem[i]+ " - ");
+            }
+        } else if ((opc==1) && (opc_1==2)) {
+            System.out.println("Ordenamiento Insercción en Forma Descendente");
+            System.out.println("Arreglo Desordenado");
+            for (int i=0;i<elem.length;i++) {
+                System.out.print(elem[i]+ " - ");
+            }
+            int auxiliar, pos;
+            for (int i = 0; i < elem.length; i++) {
+                pos = i;
+                auxiliar = elem[i];
+                while ((pos > 0) && (elem[pos - 1] > auxiliar)) {
+                    elem[pos] = elem[pos - 1];
+                    pos--;
+                }
+                elem[pos] = auxiliar;
+
+            }
+            System.out.println("Arreglo Ordenado");
+            for (int i=(elem.length-1);i>=0;i--) {
+                System.out.print(elem[i]+ " - ");
+            }
+        }else if ((opc==2) && (opc_1==1)){
+            System.out.println("Ordenamiento Burbuja en Forma Ascendente");
+            System.out.println("Arreglo Desordenado");
+            for (int i=0;i<elem.length;i++) {
+                System.out.print(elem[i]+ " - ");
+            }
+            for (int i = 0; i < (elem.length - 1); i++) {
+                for (int j = 0; j < (elem.length - 1); j++) {
+                    if (elem[j] > elem[j + 1]) {
+                        aux = elem[j];
+                        elem[j] = elem[j + 1];
+                        elem[j + 1] = aux;
+                    }
+                }
+            }
+            System.out.println("Arreglo Ordenado");
+            for (int i=0;i<elem.length;i++) {
+                System.out.print(elem[i]+ " - ");
+            }
+        } else if ((opc==2) && (opc_1==2)) {
+            System.out.println("Ordenamiento Burbuja en Forma Descendente");
+            System.out.println("Arreglo Desordenado");
+            for (int i=0;i<elem.length;i++) {
+                System.out.print(elem[i]+ " - ");
+            }
+            for (int i = 0; i < (elem.length - 1); i++) {
+                for (int j = 0; j < (elem.length - 1); j++) {
+                    if (elem[j] > elem[j + 1]) {
+                        aux = elem[j];
+                        elem[j] = elem[j + 1];
+                        elem[j + 1] = aux;
+                    }
+                }
+            }
+            System.out.println("Arreglo Ordenado");
+            for (int i=(elem.length-1);i>=0;i--) {
+                System.out.print(elem[i]+ " - ");
+            }
+            }else if ((opc==3) && (opc_1==1)){
+            System.out.println("Ordenamiento Seleccion en Forma Ascendente");
+            System.out.println("Arreglo Desordenado");
+            for (int i=0;i<elem.length;i++) {
+                System.out.print(elem[i]+ " - ");
+            }
+            int minimo, auxiliar, pos;
+            //5,-3,2258,10,4,3,25
+            for (int i = 0; i < (elem.length - 1); i++) {
+                minimo = elem[i];
+                pos = i;
+                for (int j = i + 1; j < elem.length; j++) {
+                    if (elem[j] < minimo) {
+                        minimo = elem[j];
+                        pos = j;
+                    }
+                }
+                if (pos != i) {
+                    auxiliar = elem[i];
+                    elem[i] = elem[pos];
+                    elem[pos] = auxiliar;
+                }
+            }
+            System.out.println("Arreglo Ordenado");
+            for (int i=0;i<elem.length;i++) {
+                System.out.print(elem[i]+ " - ");
+            }
+        }else if ((opc==3) && (opc_1==2)){
+            System.out.println("Ordenamiento Seleccion en Forma Descendiente");
+            System.out.println("Arreglo Desordenado");
+            for (int i=0;i<elem.length;i++) {
+                System.out.print(elem[i]+ " - ");
+            }
+            int minimo, auxiliar, pos;
+            //5,-3,2258,10,4,3,25
+            for (int i = 0; i < (elem.length - 1); i++) {
+                minimo = elem[i];
+                pos = i;
+                for (int j = i + 1; j < elem.length; j++) {
+                    if (elem[j] < minimo) {
+                        minimo = elem[j];
+                        pos = j;
+                    }
+                }
+                if (pos != i) {
+                    auxiliar = elem[i];
+                    elem[i] = elem[pos];
+                    elem[pos] = auxiliar;
+                }
+            }
+            System.out.println("Arreglo Ordenado");
+            for (int i=(elem.length-1);i>=0;i--) {
+                System.out.print(elem[i]+ " - ");
+            }
+            }else {
+            System.out.println("Opción Incorrecta");
+        }
+        }
+
+
+    // Método para imprimir un array
+    static void printArray(int[] arr) {
+        for (int i = 0; i < arr.length; ++i) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+    // Método para realizar el ordenamiento por mezcla
+    static void mergeSort(int[] arr, int left, int right) {
+        if (left < right) {
+            // Encuentra el punto medio del array
+            int mid = (left + right) / 2;
+
+            // Ordena la primera mitad
+            mergeSort(arr, left, mid);
+
+            // Ordena la segunda mitad
+            mergeSort(arr, mid + 1, right);
+
+            // Une las mitades ordenadas
+            merge(arr, left, mid, right);
+        }
+    }
+
+    // Método para combinar dos subarrays ordenados
+    static void merge(int[] arr, int left, int mid, int right) {
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+
+        // Crea arrays temporales
+        int[] L = new int[n1];
+        int[] R = new int[n2];
+
+        // Copia los datos a los arrays temporales L[] y R[]
+        for (int i = 0; i < n1; ++i) {
+            L[i] = arr[left + i];
+        }
+        for (int j = 0; j < n2; ++j) {
+            R[j] = arr[mid + 1 + j];
+        }
+
+        // Une los arrays temporales de vuelta en arr[left..right]
+        int i = 0, j = 0;
+        int k = left;
+        while (i < n1 && j < n2) {
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];
+                i++;
+            } else {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Copia los elementos restantes de L[], si los hay
+        while (i < n1) {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+
+        // Copia los elementos restantes de R[], si los hay
+        while (j < n2) {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+
+    }
+
+}
