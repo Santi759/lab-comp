@@ -1,0 +1,70 @@
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+class Articulo {
+    private String nombreArt;
+    private double precioUni;
+    private int cantidad;
+
+    public Articulo(String nombreArt, double precioUni, int cantidad) {
+        this.nombreArt = nombreArt;
+        this.precioUni = precioUni;
+        this.cantidad = cantidad;
+    }
+    public double calcularSubtotal(){
+        return precioUni*cantidad;
+    }
+    public String getNombreArt(){
+        return nombreArt;
+    }
+}
+public class Factura {
+    private int numFactura;
+    private Date fechaEmision;
+    private String cliente;
+    private List<Articulo> articulos;
+    private double precioUni;
+    private int cantidad;
+    private double subtotal;
+    private double iva;
+    private double total;
+
+    public Factura(int numFactura, Date fechaEmision, String cliente){
+        this.numFactura=numFactura;
+        this.fechaEmision=fechaEmision;
+        this.cliente=cliente;
+        this.articulos= new ArrayList<>();
+    }
+    public void agregarArticulo(String nombreArt, double precioUni, int cantidad){
+        Articulo articulo = new Articulo(nombreArt, precioUni, cantidad);
+        articulos.add(articulo);
+    }
+    public void calcularSubtotal() {
+        subtotal = 0;
+        for (Articulo articulo : articulos) {
+            subtotal += articulo.calcularSubtotal();
+        }
+    }
+
+    public void calcularIVA(double porcentajeIVA) {
+        iva = subtotal * porcentajeIVA;
+    }
+
+    public void calcularTotal() {
+        total = subtotal + iva;
+    }
+
+    public void imprimirFactura() {
+        System.out.println("Número de factura: " + numFactura);
+        System.out.println("Fecha de emisión: " + fechaEmision);
+        System.out.println("Cliente: " + cliente);
+        System.out.println("Artículos:");
+        for (Articulo articulo : articulos) {
+            System.out.println("  - " + articulo.getNombreArt() + ": $" + articulo.calcularSubtotal());
+        }
+        System.out.println("Subtotal: $" + subtotal);
+        System.out.println("IVA: $" + iva);
+        System.out.println("Total: $" + total);
+    }
+}
